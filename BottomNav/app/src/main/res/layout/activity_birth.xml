@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".regis.PhoneNumActivity">
+
+    <TextView
+        android:id="@+id/txtBack2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Back"
+        android:textColor="@color/main_color"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            app:srcCompat="@drawable/image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày sinh"
+            android:textColor="@color/main_color"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/edtDateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edittext"
+            android:drawableStart="@drawable/baseline_calendar_month_24"
+            android:drawablePadding="10dp"
+            android:hint="Date of Birth"
+            android:inputType="number"
+            android:maxLength="13"
+            android:padding="10dp"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/txtLoginErr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Lỗi ở đây =))"
+            android:textColor="@color/main_color"
+            android:textSize="18dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tải lên hình đại diện của bạn"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/main_color"
+            android:textSize="25dp"/>
+
+        <ImageView
+            android:id="@+id/imgUploadAvatar"
+            android:layout_width="169dp"
+            android:layout_height="150dp"
+            android:src="@drawable/upload_avatar" />
+
+
+        <EditText
+            android:id="@+id/btnRegis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edittext"
+            android:editable="false"
+            android:padding="8dp"
+            android:text="Đăng ký"
+            android:textAlignment="center"
+            android:textSize="22dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
