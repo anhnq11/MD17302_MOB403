@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:padding="20dp"
+    tools:context=".ui.ProductDetailsFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/prd_detail_img_box"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:cardCornerRadius="15dp">
+
+        <ImageView
+            android:id="@+id/prd_detail_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img1" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/prd_detail_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prd_detail_img_box"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/prd_detail_favour"
+        android:text="Sản phẩm"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/prd_detail_favour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prd_detail_img_box"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/baseline_favorite_border_24"
+
+        />
+
+    <TextView
+        android:id="@+id/prd_detail_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prd_detail_name"
+        android:layout_marginTop="10dp"
+        android:text="Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/prd_detail_title_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prd_detail_desc"
+        android:layout_marginTop="10dp"
+        android:text="Kích thước"
+        android:textColor="@color/white"
+        android:textSize="23dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/prd_detail_size_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/prd_detail_title_price"
+        android:layout_below="@id/prd_detail_title_size"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:scrollbars="horizontal">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/edittext"
+            android:text="S"
+            android:textAlignment="center"
+            android:textColor="@color/background"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/search_box"
+            android:text="M"
+            android:textAlignment="center"
+            android:textColor="@color/main_color"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/search_box"
+            android:text="L"
+            android:textAlignment="center"
+            android:textColor="@color/main_color"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/search_box"
+            android:text="XL"
+            android:textAlignment="center"
+            android:textColor="@color/main_color"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/search_box"
+            android:text="XXL"
+            android:textAlignment="center"
+            android:textColor="@color/main_color"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/prd_detail_title_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/prd_detail_price"
+            android:layout_marginTop="10dp"
+            android:text="Price"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/prd_detail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/prd_button_buy"
+            android:text="20.000 Đ"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/prd_button_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/edittext"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:text="Buy Now"
+            android:textColor="@color/background"
+            android:textSize="25dp" />
+
+</RelativeLayout>

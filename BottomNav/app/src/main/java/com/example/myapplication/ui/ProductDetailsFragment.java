@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.profile;
+package com.example.myapplication.ui;
 
 import android.os.Bundle;
 
@@ -8,20 +8,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myapplication.Model.productModel;
 import com.example.myapplication.R;
 
-public class ProfileFragment extends Fragment {
+public class ProductDetailsFragment extends Fragment {
 
-    public ProfileFragment() {
+    public ProductDetailsFragment(productModel products) {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_product_details, container, false);
     }
 }

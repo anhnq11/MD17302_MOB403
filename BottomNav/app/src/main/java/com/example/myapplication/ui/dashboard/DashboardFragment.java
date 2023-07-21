@@ -6,19 +6,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.API.ApiServices;
-import com.example.myapplication.Model.products;
+import com.example.myapplication.Adapter.ProductsAdapter;
+import com.example.myapplication.Model.productModel;
 import com.example.myapplication.R;
-import com.example.myapplication.databinding.FragmentDashboardBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,7 @@ import retrofit2.Response;
 public class DashboardFragment extends Fragment {
 
     RecyclerView recyclerProduct;
-    private List<products> listProducts;
+    private List<productModel> listProducts;
 
     @SuppressLint("MissingInflatedId")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -38,9 +36,11 @@ public class DashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         recyclerProduct = view.findViewById(R.id.recyclerProduct);
 
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerProduct.setLayoutManager(linearLayoutManager);
+        recyclerProduct.setLayoutManager(gridLayoutManager);
 
         listProducts = new ArrayList<>();
         getProducts();
@@ -48,18 +48,21 @@ public class DashboardFragment extends Fragment {
         return view;
     }
 
-    private void getProducts(){
-        ApiServices.apiServices.getProducts().enqueue(new Callback<List<products>>() {
+    private void getProducts() {
+        ApiServices.apiServices.getProducts().enqueue(new Callback<List<productModel>>() {
             @Override
-            public void onResponse(Call<List<products>> call, Response<List<products>> response) {
-                listProducts = (ArrayList<products>) response.body();
-                if (!listProducts.isEmpty()){
-                    Toast.makeText(getContext(), "Load dữ liệu thành công!" + listProducts.size(), Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<List<productModel>> call, Response<List<productModel>> response) {
+                Log.d("TAG", "onResponse: " + response);
+                if (!response.body().isEmpty()) {
+                    listProducts = (ArrayList<productModel>) response.body();
+                    ProductsAdapter productsAdapter = new ProductsAdapter(getContext(), (ArrayList<productModel>) listProducts);
+                    recyclerProduct.setAdapter(productsAdapter);
+                    productsAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<products>> call, Throwable t) {
+            public void onFailure(Call<List<productModel>> call, Throwable t) {
                 Log.e("TAG", "onFailure: ", t);
             }
         });

@@ -1,8 +1,6 @@
 package com.example.myapplication.API;
 
-import com.example.myapplication.Model.products;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.myapplication.Model.productModel;
 
 import java.util.List;
 
@@ -13,13 +11,12 @@ import retrofit2.http.GET;
 
 public interface ApiServices {
 
-    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-
     ApiServices apiServices = new Retrofit.Builder()
+//            .baseUrl("http://192.168.106.101:3000/api/")
             .baseUrl("http://10.0.2.2:3000/api/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(GsonConverterFactory.create())
             .build().create(ApiServices.class);
 
     @GET("products/products")
-    Call<List<products>> getProducts();
+    Call<List<productModel>> getProducts();
 }
