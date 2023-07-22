@@ -52,7 +52,6 @@ public class DashboardFragment extends Fragment {
         ApiServices.apiServices.getProducts().enqueue(new Callback<List<productModel>>() {
             @Override
             public void onResponse(Call<List<productModel>> call, Response<List<productModel>> response) {
-                Log.d("TAG", "onResponse: " + response);
                 if (!response.body().isEmpty()) {
                     listProducts = (ArrayList<productModel>) response.body();
                     ProductsAdapter productsAdapter = new ProductsAdapter(getContext(), (ArrayList<productModel>) listProducts);
