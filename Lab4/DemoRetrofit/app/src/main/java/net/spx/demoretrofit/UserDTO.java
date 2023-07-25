@@ -6,6 +6,15 @@ public class UserDTO {
     String passwd;
     String email;
 
+    public UserDTO() {
+    }
+
+    public UserDTO(String username, String passwd, String email) {
+        this.username = username;
+        this.passwd = passwd;
+        this.email = email;
+    }
+
     public String toString(){
         return  id + " - " + username + "\n" + email;
     }

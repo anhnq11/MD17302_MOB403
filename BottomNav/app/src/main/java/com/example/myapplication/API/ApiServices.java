@@ -4,6 +4,7 @@ import com.example.myapplication.Model.productModel;
 import com.example.myapplication.Model.userModel;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -23,6 +24,9 @@ public interface ApiServices {
     @GET("users/login")
     Call<userModel> login(@Query("username") String username,
                                      @Query("password") String password);
+
+    @GET("users/checkRegis")
+    Call<Object> checkRegis(@Query("username") String username);
 
     @GET("products/products")
     Call<List<productModel>> getProducts();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,9 +14,11 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.Model.productModel;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.ProductDetailsFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,11 +45,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         productModel products = listProducts.get(position);
         holder.txtProductName.setText(products.getName());
         holder.txtProductPrice.setText( products.getPrice() + "");
+        Glide.with(context)
+                .load(products.getImage())
+                .into(holder.img_prdItem_prdImg);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Hiiii =))) " + products.getName(), Toast.LENGTH_SHORT).show();
                 loadFragment(new ProductDetailsFragment(products));
             }
         });
@@ -61,11 +66,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     public class ProductViewHolder extends RecyclerView.ViewHolder{
 
         private TextView txtProductName, txtProductPrice;
+        private ImageView img_prdItem_prdImg;
+
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             txtProductName = itemView.findViewById(R.id.txtProductName);
             txtProductPrice = itemView.findViewById(R.id.txtProductPrice);
+            img_prdItem_prdImg = itemView.findViewById(R.id.img_prdItem_prdImg);
         }
     }
 

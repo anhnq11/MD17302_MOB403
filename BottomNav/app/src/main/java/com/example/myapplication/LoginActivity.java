@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 import com.example.myapplication.API.ApiServices;
 import com.example.myapplication.Model.userModel;
 import com.example.myapplication.regis.RegisActivity;
+import com.example.myapplication.sharedPreferencesHelper.SharedPreferencesHelper;
 import com.example.myapplication.ui.home.HomeFragment;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -57,21 +60,20 @@ public class LoginActivity extends AppCompatActivity {
                                 txtLoginErr.setText("* Tên đăng nhập hoặc mật khẩu không đúng!");
                             }
                             if (response.code() == 200){
-                                Log.d("TAG", "Success!" + response.body().getFullname());
+                                userModel user = response.body();
+                                SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getApplicationContext());
+                                sharedPreferencesHelper.saveObject("userInfo", user);
                                 Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LoginActivity.this, HomeFragment.class));
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             }
                         }
 
                         @Override
                         public void onFailure(Call<userModel> call, Throwable t) {
-
+                            Log.d("TAG", "Connection Error!");
                         }
                     });
                 }
-//
-//                Intent toMainAct = new Intent(LoginActivity.this, MainActivity.class);
-//                startActivity(toMainAct);
             }
         });
 
@@ -89,16 +91,14 @@ public class LoginActivity extends AppCompatActivity {
             txtLoginErr.setVisibility(View.GONE);
 
             if (userName.length() == 0){
-                check = false;
                 txtLoginErr.setVisibility(View.VISIBLE);
-                txtLoginErr.setText("* Vui lòng nhập tên đăng nhập!");
+                txtLoginErr.setText("* Vui lòng nhập tên đăng nhập;");
+                return false;
             }
-            else {
-                if (passWord.length() == 0){
-                    check = false;
-                    txtLoginErr.setVisibility(View.VISIBLE);
-                    txtLoginErr.setText("* Vui lòng nhập mật khẩu!");
-                }
+            if (passWord.length() == 0){
+                txtLoginErr.setVisibility(View.VISIBLE);
+                txtLoginErr.setText("* Vui lòng nhập mật khẩu!");
+                return false;
             }
 
             return check;

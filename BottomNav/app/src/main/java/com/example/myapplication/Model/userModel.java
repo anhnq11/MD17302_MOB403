@@ -13,6 +13,12 @@ public class userModel {
     public userModel() {
     }
 
+    public userModel(String fullname, String username, String password) {
+        this.fullname = fullname;
+        this.username = username;
+        this.password = password;
+    }
+
     public userModel(String _id, String fullname, String username, String password, String email, Object id_role, String image) {
         this._id = _id;
         this.fullname = fullname;

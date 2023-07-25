@@ -1,13 +1,19 @@
 package net.spx.demoretrofit;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static java.security.AccessController.getContext;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,11 +32,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     EditText ed_username, ed_passwd, ed_email;
     Button btn_add, btn_get;
-    ListView lv_user;
-    static final  String BASE_URL = "https://64b93df279b7c9def6c0cca0.mockapi.io/users/"; // có /  ở  cuối
-   ArrayAdapter arrayAdapter;
-   List<UserDTO>  ds_user;
-
+    RecyclerView lv_user;
+    static final String BASE_URL = "https://64b93df279b7c9def6c0cca0.mockapi.io/users/";
+    ArrayList<UserDTO> ds_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,22 +49,25 @@ public class MainActivity extends AppCompatActivity {
         // khai báo ds a
         ds_user = new ArrayList<UserDTO>();
 
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ds_user );
-        lv_user.setAdapter( arrayAdapter );
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplication());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        lv_user.setLayoutManager(linearLayoutManager);
+        Adapter adapter = new Adapter(getApplication(), (ArrayList<UserDTO>) ds_user);
+        lv_user.setAdapter(adapter);
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String uname = ed_username .getText().toString();
+                String uname = ed_username.getText().toString();
                 String p = ed_passwd.getText().toString();
                 String m = ed_email.getText().toString();
 
                 UserDTO u = new UserDTO();
-                u.setUsername( uname );
-                u.setEmail( m );
-                u.setPasswd( p );
+                u.setUsername(uname);
+                u.setEmail(m);
+                u.setPasswd(p);
 
-                AddUser( u );
+                AddUser(u);
             }
         });
 
@@ -76,27 +83,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void  AddUser (UserDTO objUser ){
+    void AddUser(UserDTO objUser) {
         // Tạo đối tượng chuyển đổi kiểu dữ liệu
         Gson gson = new GsonBuilder().setLenient().create();
         // Tạo Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl( BASE_URL )
-                .addConverterFactory(GsonConverterFactory.create( gson ))
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         // Khơỉ tạo Interface
-        UserInterface userInterface = retrofit.create( UserInterface.class );
+        UserInterface userInterface = retrofit.create(UserInterface.class);
 
         // Tạo call
-        Call<UserDTO> objCall =userInterface.them_user( objUser );
+        Call<UserDTO> objCall = userInterface.them_user(objUser);
 
         // thực hiện gửi dữ lệu lên sv
         objCall.enqueue(new Callback<UserDTO>() {
             @Override
             public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
                 // kết quả server trả về ở đây
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     // lấy kết quả trả về
                     UserDTO userDTO = response.body();
                     Toast.makeText(MainActivity.this,
@@ -104,8 +111,8 @@ public class MainActivity extends AppCompatActivity {
                             , Toast.LENGTH_SHORT).show();
                     GetListUser();
 
-                }else{
-                    Log.e("zzzzzzz", response.message() );
+                } else {
+                    Log.e("zzzzzzz", response.message());
                 }
             }
 
@@ -119,30 +126,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void GetListUser (){
+    void GetListUser() {
         // tạo gson
         Gson gson = new GsonBuilder().setLenient().create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl( BASE_URL )
-                .addConverterFactory(GsonConverterFactory.create( gson ) )
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         // sử dụng interface
         UserInterface userInterface = retrofit.create(UserInterface.class);
 
         // tạo đối tượng
-        Call<List<UserDTO>> objCall= userInterface.lay_danh_sach();
+        Call<List<UserDTO>> objCall = userInterface.lay_danh_sach();
         objCall.enqueue(new Callback<List<UserDTO>>() {
             @Override
             public void onResponse(Call<List<UserDTO>> call, Response<List<UserDTO>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     ds_user.clear();
-                    ds_user.addAll(  response.body() );
-                    arrayAdapter.notifyDataSetChanged();
+                    ds_user.addAll(response.body());
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplication());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    lv_user.setLayoutManager(linearLayoutManager);
+                    Adapter adapter = new Adapter(getApplicationContext(), ds_user);
+                    lv_user.setAdapter(adapter);
 
-                }else{
+                } else {
                     Toast.makeText(MainActivity.this,
                             "Không lấy được dữ liệu" + response.message(), Toast.LENGTH_SHORT).show();
                 }

@@ -8,14 +8,14 @@ public class productModel {
     private  String id;
     private  String image;
     private String name;
-    private double price;
+    private int price;
     private String desc;
     private Object id_cat;
 
     public productModel() {
     }
 
-    public productModel(String id, String image, String name, double price, String desc, Object id_cat) {
+    public productModel(String id, String image, String name, int price, String desc, Object id_cat) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -48,11 +48,11 @@ public class productModel {
         this.name = name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
