@@ -45,7 +45,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtFullname"
+            android:id="@+id/edt_phonenum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -59,7 +59,7 @@
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/txtLoginErr"
+            android:id="@+id/txt_phonenum_err"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -70,7 +70,7 @@
 
 
         <EditText
-            android:id="@+id/btnContinue2"
+            android:id="@+id/btnContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import com.example.myapplication.Model.userModel;
 import com.example.myapplication.R;
+import com.example.myapplication.databinding.ActivityPhoneNumBinding;
 import com.google.gson.Gson;
+
+import org.w3c.dom.Text;
 
 public class PhoneNumActivity extends AppCompatActivity {
 
-    EditText btnContinue2;
-    TextView back1;
+    ActivityPhoneNumBinding  binding;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -25,26 +27,38 @@ public class PhoneNumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_num);
 
-        btnContinue2 = findViewById(R.id.btnContinue2);
-        back1 = findViewById(R.id.txtBack1);
-
         Gson gson = new Gson();
         userModel user = gson.fromJson(getIntent().getStringExtra("data"), userModel.class);
         Log.d("TAG", "onCreate: " + user.getUsername());
 
-        btnContinue2.setOnClickListener(new View.OnClickListener() {
+        EditText btnContinue = findViewById(R.id.btnContinue);
+        EditText edtPhoneNum = findViewById(R.id.edt_phonenum);
+        TextView txtBack = findViewById(R.id.txtBack1);
+        TextView txtPhoneNumErr = findViewById(R.id.txt_phonenum_err);
+
+        btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toNext = new Intent(PhoneNumActivity.this, BirthActivity.class);
-                startActivity(toNext);
+                String phoneNum = edtPhoneNum.getText().toString();
+                txtPhoneNumErr.setVisibility(View.GONE);
+                if (phoneNum.length() != 0 && phoneNum.startsWith("0") && phoneNum.length() <= 13){
+                    user.setEmail(phoneNum);
+                    String userData = gson.toJson(user);
+                    Intent intent =  new Intent(PhoneNumActivity.this, BirthActivity.class);
+                    intent.putExtra("data", userData);
+                    startActivity(intent);
+                }
+                else {
+                    txtPhoneNumErr.setVisibility(View.VISIBLE);
+                    txtPhoneNumErr.setText("Số điện thoại không hợp lệ!");
+                }
             }
         });
 
-        back1.setOnClickListener(new View.OnClickListener() {
+        txtBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(PhoneNumActivity.this, RegisActivity.class);
-                startActivity(back);
+                getOnBackPressedDispatcher().onBackPressed();
             }
         });
     }

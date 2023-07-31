@@ -38,6 +38,7 @@ public class DashboardFragment extends Fragment {
 
     private List<productModel> listProducts;
 
+    userModel user;
 
     @SuppressLint("MissingInflatedId")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,14 +54,11 @@ public class DashboardFragment extends Fragment {
         recyclerProduct.setLayoutManager(gridLayoutManager);
 
         SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getContext());
-        userModel user = sharedPreferencesHelper.getObject("userInfo", userModel.class);
+        user = sharedPreferencesHelper.getObject("userInfo", userModel.class);
         Glide.with(getContext())
                 .load(user.getImage())
                 .circleCrop()
                 .into(prd_user_img);
-
-        Log.d("TAG", "onProductsFrgm: " + user.getUsername() + " - " + user.getImage());
-
         listProducts = new ArrayList<>();
         getProducts();
 
@@ -72,8 +70,8 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onResponse(Call<List<productModel>> call, Response<List<productModel>> response) {
                 if (!response.body().isEmpty()) {
-                    listProducts = (ArrayList<productModel>) response.body();
-                    ProductsAdapter productsAdapter = new ProductsAdapter(getContext(), (ArrayList<productModel>) listProducts);
+                    listProducts = response.body();
+                    ProductsAdapter productsAdapter = new ProductsAdapter(getContext(), (ArrayList<productModel>) listProducts, user);
                     recyclerProduct.setAdapter(productsAdapter);
                     productsAdapter.notifyDataSetChanged();
                 }
@@ -85,5 +83,4 @@ public class DashboardFragment extends Fragment {
             }
         });
     }
-
 }

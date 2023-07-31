@@ -15,12 +15,13 @@
         android:padding="10dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cart_item_img"
+            android:id="@+id/cart_item_img_box"
             android:layout_width="60dp"
             android:layout_height="60dp"
             app:cardCornerRadius="15dp">
 
             <ImageView
+                android:id="@+id/cart_item_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -34,12 +35,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginHorizontal="10dp"
-            android:layout_toRightOf="@+id/cart_item_img"
+            android:layout_toRightOf="@+id/cart_item_img_box"
             android:layout_toLeftOf="@+id/cart_item_quanlity"
             android:layout_centerVertical="true"
             >
 
             <TextView
+                android:id="@+id/cart_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bạc sỉu"
@@ -48,6 +50,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/cart_item_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20.000 Đ"
@@ -70,6 +73,7 @@
             >
 
             <LinearLayout
+                android:id="@+id/cart_item_minus"
                 android:layout_weight="0"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -81,11 +85,12 @@
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:src="@drawable/baseline_add_circle_outline_24" />
+                    android:src="@drawable/baseline_remove_circle_outline_24" />
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/cart_item_qty"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:text="1"
@@ -97,6 +102,7 @@
                 />
 
             <LinearLayout
+                android:id="@+id/cart_item_add"
                 android:layout_weight="0"
                 android:layout_width="40dp"
                 android:layout_height="40dp"

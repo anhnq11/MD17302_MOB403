@@ -9,7 +9,7 @@
     tools:context=".regis.PhoneNumActivity">
 
     <TextView
-        android:id="@+id/txtBack2"
+        android:id="@+id/txt_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -36,30 +36,7 @@
             app:srcCompat="@drawable/image" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ngày sinh"
-            android:textColor="@color/main_color"
-            android:textSize="35dp"
-            android:textStyle="bold" />
-
-
-        <EditText
-            android:id="@+id/edtDateOfBirth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/edittext"
-            android:drawableStart="@drawable/baseline_calendar_month_24"
-            android:drawablePadding="10dp"
-            android:hint="Date of Birth"
-            android:inputType="number"
-            android:maxLength="13"
-            android:padding="10dp"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/txtLoginErr"
+            android:id="@+id/txt_dob_err"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -77,14 +54,14 @@
             android:textSize="25dp"/>
 
         <ImageView
-            android:id="@+id/imgUploadAvatar"
+            android:id="@+id/img_upload_avatar"
             android:layout_width="169dp"
             android:layout_height="150dp"
             android:src="@drawable/upload_avatar" />
 
 
         <EditText
-            android:id="@+id/btnRegis"
+            android:id="@+id/btn_regis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

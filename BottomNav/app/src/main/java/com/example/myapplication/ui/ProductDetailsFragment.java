@@ -20,6 +20,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.ui.dashboard.DashboardFragment;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class ProductDetailsFragment extends Fragment {
 
     ImageView prd_detail_img, prd_detail_back_btn;
@@ -53,7 +57,8 @@ public class ProductDetailsFragment extends Fragment {
                 .into(prd_detail_img);
         prd_detail_name.setText(product.getName());
         prd_detail_desc.setText(product.getDesc());
-        prd_detail_price.setText(product.getPrice() + " Đ");
+        prd_detail_price.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN"))
+                .format(product.getPrice()));
 
         prd_button_buy.setOnClickListener(new View.OnClickListener() {
             @Override
