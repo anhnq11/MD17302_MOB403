@@ -35,6 +35,9 @@ import com.example.myapplication.R;
 import com.example.myapplication.sharedPreferencesHelper.SharedPreferencesHelper;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -97,10 +100,10 @@ public class BirthActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                if (bitmap != null){
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-                    byte[] bytes = byteArrayOutputStream.toByteArray();
-                    final String base64Img = android.util.Base64.encodeToString(bytes, Base64.DEFAULT);
+//                if (bitmap != null){
+//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+//                    byte[] bytes = byteArrayOutputStream.toByteArray();
+//                    final String base64Img = android.util.Base64.encodeToString(bytes, Base64.DEFAULT);
 
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
@@ -110,9 +113,27 @@ public class BirthActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(String response) {
                                     Log.d("TAG", "onResponse: " + response);
+                                    JSONObject jsonObject;
+                                    userModel newUser;
                                     if (response != null){
+                                        try {
+                                            jsonObject = new JSONObject(response);
+                                        } catch (JSONException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                        try {
+                                            newUser = new userModel(jsonObject.getString("_id"),
+                                                    jsonObject.getString("fullname"),
+                                                    jsonObject.getString("username"),
+                                                    jsonObject.getString("password"),
+                                                    jsonObject.getString("email"),
+                                                    jsonObject.getString("id_role")
+                                                    );
+                                        } catch (JSONException e) {
+                                            throw new RuntimeException(e);
+                                        }
                                         SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getApplicationContext());
-                                        sharedPreferencesHelper.saveObject("userInfo", user);
+                                        sharedPreferencesHelper.saveObject("userInfo", newUser);
                                         Toast.makeText(BirthActivity.this, "Đăng ký tài khoản thành công!", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(BirthActivity.this, MainActivity.class));
                                     }
@@ -128,7 +149,7 @@ public class BirthActivity extends AppCompatActivity {
                     }) {
                         protected Map<String, String> getParams() {
                             Map<String, String> paramV = new HashMap<>();
-                            paramV.put("image", base64Img);
+//                            paramV.put("image", base64Img);
                             paramV.put("fullname", user.getFullname());
                             paramV.put("username", user.getUsername());
                             paramV.put("password", user.getPassword());
@@ -138,7 +159,7 @@ public class BirthActivity extends AppCompatActivity {
                     };
                     queue.add(stringRequest);
                 }
-            }
+//            }
         });
 
         txt_back.setOnClickListener(new View.OnClickListener() {

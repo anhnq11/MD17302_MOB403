@@ -34,10 +34,10 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_margin="5dp"
-                    app:cardCornerRadius="15dp">
+                    app:cardCornerRadius="50dp">
 
                     <ImageView
-                        android:id="@+id/img_sanpham"
+                        android:id="@+id/profile_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
@@ -53,6 +53,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/profile_username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="UserName"
@@ -61,6 +62,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/profile_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="username@gmail.com"
@@ -129,6 +131,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/profile_my_invoices"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -348,7 +351,62 @@
                     </LinearLayout>
 
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/profile_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center_vertical"
+                    >
 
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittext"
+                        app:cardCornerRadius="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/baseline_logout_24" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đăng xuất"
+                        android:textColor="@color/main_color"
+                        android:textSize="23dp"
+                        android:layout_marginLeft="10dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_navigate_next_24"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
 
             </LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/product_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    app:cardCornerRadius="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#362c36"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/cart_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thông báo"
+            android:textColor="@color/main_color"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/cart_notifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Mua hàng thành công!"
+            android:textColor="@color/main_color"
+            android:textAlignment="center"
+            android:layout_centerVertical="true"
+            android:textSize="25dp"
+            />
+
+        <TextView
+            android:id="@+id/cart_notifi_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Truy cập đơn hàng của bạn để biết trạng thái đơn hàng!"
+            android:textColor="@color/main_color"
+            android:textAlignment="center"
+            android:layout_centerVertical="true"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/dialog_dimiss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đồng ý"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            android:paddingVertical="3dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:background="@drawable/edittext"
+            android:textColor="@color/background"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

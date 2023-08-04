@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:padding="20dp"
-    tools:context=".ui.ProductDetailsFragment">
+    tools:context=".ui.carts.ProductDetailsFragment">
 
 
 
@@ -88,72 +88,78 @@
         android:textSize="23dp"
         android:textStyle="bold" />
 
-    <LinearLayout
-        android:id="@+id/prd_detail_size_box"
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/prd_detail_title_price"
-        android:layout_below="@id/prd_detail_title_size"
-        android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:scrollbars="horizontal">
+        android:layout_below="@id/prd_detail_title_size"
+        >
 
-        <TextView
-            android:layout_width="70dp"
+        <LinearLayout
+            android:id="@+id/prd_detail_size_box"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/edittext"
-            android:text="S"
-            android:textAlignment="center"
-            android:textColor="@color/background"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            >
 
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/search_box"
-            android:text="M"
-            android:textAlignment="center"
-            android:textColor="@color/main_color"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/edittext"
+                android:text="S"
+                android:textAlignment="center"
+                android:textColor="@color/background"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/search_box"
-            android:text="L"
-            android:textAlignment="center"
-            android:textColor="@color/main_color"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/search_box"
+                android:text="M"
+                android:textAlignment="center"
+                android:textColor="@color/main_color"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/search_box"
-            android:text="XL"
-            android:textAlignment="center"
-            android:textColor="@color/main_color"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/search_box"
+                android:text="L"
+                android:textAlignment="center"
+                android:textColor="@color/main_color"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/search_box"
-            android:text="XXL"
-            android:textAlignment="center"
-            android:textColor="@color/main_color"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/search_box"
+                android:text="XL"
+                android:textAlignment="center"
+                android:textColor="@color/main_color"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/search_box"
+                android:text="XXL"
+                android:textAlignment="center"
+                android:textColor="@color/main_color"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
         <TextView
             android:id="@+id/prd_detail_title_price"
@@ -187,6 +193,7 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
             android:text="Buy Now"
+            android:textStyle="bold"
             android:textColor="@color/background"
             android:textSize="25dp" />
 

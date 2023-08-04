@@ -1,21 +1,20 @@
 package com.example.myapplication.API;
 
 import com.example.myapplication.Model.cartModel;
+import com.example.myapplication.Model.invoicesModel;
 import com.example.myapplication.Model.productModel;
 import com.example.myapplication.Model.userModel;
 
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Part;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiServices {
@@ -50,4 +49,16 @@ public interface ApiServices {
     //    Remove cart
     @PUT("products/carts/")
     Call<List<cartModel>> removeFromCart(@Query("id") String id, @Body cartModel cart);
+
+    //    Delete cart
+    @DELETE("products/carts/")
+    Call<cartModel> deleteCarts(@Query("user_id") String user_id);
+
+    //    Add cart to invoice
+    @POST("products/invoices")
+    Call<invoicesModel> addToInvoices(@Body invoicesModel myInvoice);
+
+    //    Get list invoices
+    @GET("products/invoices")
+    Call<List<invoicesModel>> getInvoices(@Query("user_id") String user_id);
 }

@@ -70,7 +70,6 @@ public class CartsAdapter extends RecyclerView.Adapter<CartsAdapter.CartViewHold
                         if (response.code() == 200){
                             Toast.makeText(context, "Đã thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
                             notifyDataSetChanged();
-                            notifyItemChanged(position);
                         }
                     }
                     @Override
@@ -89,7 +88,6 @@ public class CartsAdapter extends RecyclerView.Adapter<CartsAdapter.CartViewHold
                     @Override
                     public void onResponse(Call<List<cartModel>> call, Response<List<cartModel>> response) {
                         notifyDataSetChanged();
-                        notifyItemChanged(position);
                     }
 
                     @Override

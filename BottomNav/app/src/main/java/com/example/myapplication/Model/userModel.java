@@ -29,6 +29,15 @@ public class userModel {
         this.image = image;
     }
 
+    public userModel(String _id, String fullname, String username, String password, String email, Object id_role) {
+        this._id = _id;
+        this.fullname = fullname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.id_role = id_role;
+    }
+
     public String get_id() {
         return _id;
     }

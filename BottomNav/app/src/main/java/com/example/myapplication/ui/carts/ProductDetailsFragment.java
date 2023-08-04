@@ -1,4 +1,4 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.ui.carts;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -15,20 +15,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.API.ApiServices;
+import com.example.myapplication.Model.cartModel;
 import com.example.myapplication.Model.productModel;
+import com.example.myapplication.Model.userModel;
 import com.example.myapplication.R;
+import com.example.myapplication.sharedPreferencesHelper.SharedPreferencesHelper;
 import com.example.myapplication.ui.dashboard.DashboardFragment;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProductDetailsFragment extends Fragment {
 
     ImageView prd_detail_img, prd_detail_back_btn;
     TextView prd_detail_name, prd_detail_desc, prd_detail_price, prd_button_buy;
     productModel product;
+    userModel user;
 
     public ProductDetailsFragment(productModel products) {
         this.product = products;
@@ -52,6 +62,9 @@ public class ProductDetailsFragment extends Fragment {
         prd_button_buy = view.findViewById(R.id.prd_button_buy);
         prd_detail_back_btn = view.findViewById(R.id.prd_detail_back_btn);
 
+        SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getContext());
+        user = sharedPreferencesHelper.getObject("userInfo", userModel.class);
+
         Glide.with(getContext())
                 .load(product.getImage())
                 .into(prd_detail_img);
@@ -63,7 +76,21 @@ public class ProductDetailsFragment extends Fragment {
         prd_button_buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Hi " + product.getName(), Toast.LENGTH_SHORT).show();
+                cartModel myCart = new cartModel(user.get_id(), product, 1, product.getPrice());
+                ApiServices.apiServices.addToCart(myCart).enqueue(new Callback<List<cartModel>>() {
+                    @Override
+                    public void onResponse(Call<List<cartModel>> call, Response<List<cartModel>> response) {
+                        if (response.code() == 200){
+                            Toast.makeText(getContext(), "Đã thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
+                            loadFragment(new CartsFragment());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<cartModel>> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

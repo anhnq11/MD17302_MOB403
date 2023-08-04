@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,193 +9,211 @@
     android:orientation="vertical"
     tools:context=".ui.carts.CartsFragment">
 
-    <TextView
-        android:id="@+id/cart_title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Giỏ hàng"
-        android:textColor="@color/main_color"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        />
-
-    <TextView
-        android:id="@+id/cart_notifi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Không có sản phẩm trong giỏ hàng!"
-        android:textColor="@color/main_color"
-        android:textAlignment="center"
-        android:layout_centerVertical="true"
-        android:textSize="20dp"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:visibility="gone"
-        android:id="@+id/recyclerCart"
-        android:layout_width="wrap_content"
-        android:layout_height="256dp"
-        android:layout_above="@+id/bottom_layout"
-        android:layout_below="@+id/cart_title"
-        android:layout_marginVertical="10dp"
-        android:layout_marginTop="-119dp"
-        android:layout_marginBottom="215dp"
-        android:orientation="vertical"
-        tools:listitem="@layout/cart_item" />
-
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/bottom_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         >
 
         <TextView
-            android:id="@+id/spam1"
-            android:layout_width="match_parent"
-            android:layout_height="50px"
-            android:text="----------------------------------------------------------------------------------------------------"
-            android:textColor="@color/white"
-            />
-
-        <RadioGroup
-            android:id="@+id/cart_radioGroup"
+            android:id="@+id/cart_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/spam1"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <RadioButton
-                    android:id="@+id/cart_fast_ship"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Giao hàng nhanh"
-                    android:textColor="@color/main_color"
-                    android:textSize="23dp"
-                    android:layout_below="@id/spam1"
-                    />
-
-                <TextView
-                    android:id="@+id/cart_content_fast_ship"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/spam1"
-                    android:layout_toRightOf="@+id/cart_fast_ship"
-                    android:text="40.000 Đ"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/main_color"
-                    android:textSize="23dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-                <RadioButton
-                    android:id="@+id/cart_ship"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Giao hàng tiêu chuẩn"
-                    android:textColor="@color/main_color"
-                    android:checked="true"
-                    android:textSize="23dp"
-                    android:layout_below="@+id/cart_fast_ship"
-
-                    />
-
-                <TextView
-                    android:id="@+id/cart_content_ship"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="20.000 Đ"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/main_color"
-                    android:textSize="23dp"
-                    android:layout_toRightOf="@+id/cart_ship"
-                    android:layout_below="@+id/cart_fast_ship"
-                    />
-
-            </LinearLayout>
-
-
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/spam2"
-            android:layout_width="match_parent"
-            android:layout_height="50px"
-            android:text="----------------------------------------------------------------------------------------------------"
-            android:textColor="@color/white"
-            android:layout_below="@+id/cart_radioGroup"
+            android:text="Giỏ hàng"
+            android:textColor="@color/main_color"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textStyle="bold"
             />
 
         <TextView
-            android:id="@+id/cart_title_total"
+            android:id="@+id/cart_notifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Không có sản phẩm trong giỏ hàng!"
+            android:textColor="@color/main_color"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tổng tiền"
-            android:textColor="@color/main_color"
-            android:textSize="27dp"
-            android:textStyle="bold"
-            android:layout_below="@+id/spam2"
-            />
+            android:minHeight="300dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            tools:listitem="@layout/cart_item" />
 
-        <TextView
-            android:id="@+id/cart_total"
+        <RelativeLayout
+            android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="86.000Đ"
-            android:textAlignment="textEnd"
-            android:textColor="@color/main_color"
-            android:textSize="27dp"
-            android:textStyle="bold"
-            android:layout_toRightOf="@+id/cart_title_total"
-            android:layout_below="@+id/spam2"
-            />
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            >
 
-        <EditText
-            android:id="@+id/cart_note"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/search_box"
-            android:hint="Ghi chú..."
-            android:maxLines="2"
-            android:textSize="23dp"
-            android:paddingVertical="7dp"
-            android:paddingHorizontal="15dp"
-            android:layout_marginVertical="10dp"
-            android:textColor="@color/main_color"
-            android:textColorHint="@color/main_color"
-            android:layout_below="@id/cart_title_total"
-            />
+            <TextView
+                android:id="@+id/spam1"
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:text="----------------------------------------------------------------------------------------------------"
+                android:textColor="@color/white"
+                />
 
-        <TextView
-            android:id="@+id/cart_button_pay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mua ngay"
-            android:textSize="27dp"
-            android:textStyle="bold"
-            android:paddingVertical="5dp"
-            android:layout_marginTop="5dp"
-            android:textAlignment="center"
-            android:background="@drawable/edittext"
-            android:textColor="@color/background"
-            android:layout_below="@+id/cart_note"
-            />
+            <RadioGroup
+                android:id="@+id/cart_radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spam1"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <RadioButton
+                        android:id="@+id/cart_fast_ship"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giao hàng nhanh"
+                        android:textColor="@color/main_color"
+                        android:textSize="23dp"
+                        android:layout_below="@id/spam1"
+                        />
+
+                    <TextView
+                        android:id="@+id/cart_content_fast_ship"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/spam1"
+                        android:layout_toRightOf="@+id/cart_fast_ship"
+                        android:text="40.000 Đ"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/main_color"
+                        android:textSize="23dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/cart_ship"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giao hàng tiêu chuẩn"
+                        android:textColor="@color/main_color"
+                        android:checked="true"
+                        android:textSize="23dp"
+                        android:layout_below="@+id/cart_fast_ship"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/cart_content_ship"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="20.000 Đ"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/main_color"
+                        android:textSize="23dp"
+                        android:layout_toRightOf="@+id/cart_ship"
+                        android:layout_below="@+id/cart_fast_ship"
+                        />
+
+                </LinearLayout>
 
 
-    </RelativeLayout>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/spam2"
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:text="----------------------------------------------------------------------------------------------------"
+                android:textColor="@color/white"
+                android:layout_below="@+id/cart_radioGroup"
+                />
+
+            <TextView
+                android:id="@+id/cart_title_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng tiền"
+                android:textColor="@color/main_color"
+                android:textSize="27dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/spam2"
+                />
+
+            <TextView
+                android:id="@+id/cart_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="86.000Đ"
+                android:textAlignment="textEnd"
+                android:textColor="@color/main_color"
+                android:textSize="27dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/cart_title_total"
+                android:layout_below="@+id/spam2"
+                />
+
+            <EditText
+                android:id="@+id/cart_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_box"
+                android:hint="Ghi chú..."
+                android:maxLines="2"
+                android:textSize="23dp"
+                android:paddingVertical="7dp"
+                android:paddingHorizontal="15dp"
+                android:layout_marginVertical="10dp"
+                android:textColor="@color/main_color"
+                android:textColorHint="@color/main_color"
+                android:layout_below="@id/cart_title_total"
+                />
+
+            <EditText
+                android:id="@+id/cart_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_box"
+                android:hint="Địa chỉ giao hàng..."
+                android:maxLines="2"
+                android:textSize="23dp"
+                android:paddingVertical="7dp"
+                android:paddingHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/main_color"
+                android:textColorHint="@color/main_color"
+                android:layout_below="@id/cart_note"
+                />
+
+            <TextView
+                android:id="@+id/cart_button_pay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mua ngay"
+                android:textSize="27dp"
+                android:textStyle="bold"
+                android:paddingVertical="5dp"
+                android:layout_marginTop="5dp"
+                android:textAlignment="center"
+                android:background="@drawable/edittext"
+                android:textColor="@color/background"
+                android:layout_below="@+id/cart_address"
+                />
 
 
-</RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

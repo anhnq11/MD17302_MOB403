@@ -1,7 +1,6 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import com.example.myapplication.Model.cartModel;
 import com.example.myapplication.Model.productModel;
 import com.example.myapplication.Model.userModel;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.ProductDetailsFragment;
+import com.example.myapplication.ui.carts.ProductDetailsFragment;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;

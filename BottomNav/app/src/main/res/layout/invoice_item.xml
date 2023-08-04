@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#362c36"
+            android:padding="10dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/invoice_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bạc sỉu"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/invoice_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Địa chỉ"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trạng thái: "
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/invoice_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Trạng thái"
+                    android:textColor="#4CAF50"
+                    android:textSize="20dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng thanh toán: "
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/invoice_total_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Trạng thái"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="23dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>
