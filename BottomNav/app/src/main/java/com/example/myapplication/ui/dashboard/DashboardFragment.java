@@ -23,6 +23,7 @@ import com.example.myapplication.Model.productModel;
 import com.example.myapplication.Model.userModel;
 import com.example.myapplication.R;
 import com.example.myapplication.sharedPreferencesHelper.SharedPreferencesHelper;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,6 @@ public class DashboardFragment extends Fragment {
     private List<productModel> listProducts;
 
     userModel user;
-
     @SuppressLint("MissingInflatedId")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

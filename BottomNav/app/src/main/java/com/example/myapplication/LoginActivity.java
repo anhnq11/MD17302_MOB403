@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<userModel> call, Throwable t) {
-                            Log.d("TAG", "Connection Error!");
+                            Log.d("TAG", "Connection Error!" + t);
                         }
                     });
                 }

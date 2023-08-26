@@ -167,7 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/prd_detail_price"
             android:layout_marginTop="10dp"
-            android:text="Price"
+            android:text="Giá bán"
             android:textColor="@color/white"
             android:textSize="20dp" />
 
@@ -192,7 +192,7 @@
             android:background="@drawable/edittext"
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
-            android:text="Buy Now"
+            android:text="Mua ngay"
             android:textStyle="bold"
             android:textColor="@color/background"
             android:textSize="25dp" />
