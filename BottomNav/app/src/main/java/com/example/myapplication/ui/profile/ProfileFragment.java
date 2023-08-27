@@ -28,7 +28,7 @@ public class ProfileFragment extends Fragment {
     private TextView profile_username, profile_email;
     private userModel user;
 
-    LinearLayout profile_my_invoices, profile_logout;
+    LinearLayout profile_my_invoices, profile_my_favours, profile_logout;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -42,6 +42,7 @@ public class ProfileFragment extends Fragment {
         profile_email = view.findViewById(R.id.profile_email);
         profile_my_invoices = view.findViewById(R.id.profile_my_invoices);
         profile_logout = view.findViewById(R.id.profile_logout);
+        profile_my_favours = view.findViewById(R.id.profile_my_favours);
 
         SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getContext());
         user = sharedPreferencesHelper.getObject("userInfo", userModel.class);
@@ -56,6 +57,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 loadFragment(new MyInvoicesFragment());
+            }
+        });
+
+        profile_my_favours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadFragment(new MyFavouritesFragment());
             }
         });
 

@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.profile;
 
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,62 +15,56 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.myapplication.API.ApiServices;
-import com.example.myapplication.Adapter.InvoicesAdapter;
-import com.example.myapplication.Adapter.ProductsAdapter;
-import com.example.myapplication.Model.invoicesModel;
+import com.example.myapplication.Adapter.FavourProductsAdapter;
 import com.example.myapplication.Model.productModel;
 import com.example.myapplication.Model.userModel;
 import com.example.myapplication.R;
 import com.example.myapplication.sharedPreferencesHelper.SharedPreferencesHelper;
-import com.example.myapplication.ui.dashboard.DashboardFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MyInvoicesFragment extends Fragment {
+public class MyFavouritesFragment extends Fragment {
 
-    private RecyclerView recyclerInvoice;
-    private userModel user;
-    private List<invoicesModel> invoicesList;
-    private ImageView my_invoices_back_btn;
+    private ImageView my_favour_back_btn;
+    RecyclerView recycler_favour_product;
+    userModel user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_my_invoices, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_favourites, container, false);
 
-        recyclerInvoice = view.findViewById(R.id.recyclerInvoice);
-        my_invoices_back_btn = view.findViewById(R.id.my_invoices_back_btn);
+        my_favour_back_btn = view.findViewById(R.id.my_favour_back_btn);
+        recycler_favour_product = view.findViewById(R.id.recycler_favour_product);
 
         SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(getContext());
         user = sharedPreferencesHelper.getObject("userInfo", userModel.class);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerInvoice.setLayoutManager(linearLayoutManager);
+        recycler_favour_product.setLayoutManager(linearLayoutManager);
 
-        ApiServices.apiServices.getInvoices(user.get_id()).enqueue(new Callback<List<invoicesModel>>() {
+        ApiServices.apiServices.getListFavours(user.get_id()).enqueue(new Callback<ArrayList<productModel>>() {
             @Override
-            public void onResponse(Call<List<invoicesModel>> call, Response<List<invoicesModel>> response) {
+            public void onResponse(Call<ArrayList<productModel>> call, Response<ArrayList<productModel>> response) {
                 if (response.code() == 200){
-                    invoicesList = response.body();
-                    InvoicesAdapter invoicesAdapter = new InvoicesAdapter(getContext(), invoicesList, user);
-                    recyclerInvoice.setAdapter(invoicesAdapter);
-                    invoicesAdapter.notifyDataSetChanged();
+                    ArrayList<productModel> listProducts = response.body();
+                    FavourProductsAdapter favourProductsAdapter = new FavourProductsAdapter(getContext(), listProducts, user);
+                    recycler_favour_product.setAdapter(favourProductsAdapter);
+                    favourProductsAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<invoicesModel>> call, Throwable t) {
-                Log.d("TAG", "Connection Error! " + t);
+            public void onFailure(Call<ArrayList<productModel>> call, Throwable t) {
+                Log.d("TAG", "onFailure: " + t);
             }
         });
 
-        my_invoices_back_btn.setOnClickListener(new View.OnClickListener() {
+        my_favour_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loadFragment(new ProfileFragment());

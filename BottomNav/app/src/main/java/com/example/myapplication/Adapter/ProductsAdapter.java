@@ -36,7 +36,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
     private Context context;
     private ArrayList<productModel> listProducts;
-
     private userModel user;
 
     public ProductsAdapter(Context context, ArrayList<productModel> listProducts, userModel user) {
